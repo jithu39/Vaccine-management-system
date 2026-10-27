@@ -1,0 +1,79 @@
+<svg width="100%" viewBox="0 0 680 560" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>EpiShield architecture</title>
+<desc>Diagram showing request flow from React frontend through auth, rate-limit, and role middleware, into controllers, then to MongoDB and a LangChain AI agent, with Redis backing both the blacklist and rate limiter.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<rect x="190" y="40" width="300" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#2C2C2A">React frontend</text>
+<text x="340" y="76" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#444441">Resident &amp; admin UI</text>
+
+<line x1="340" y1="96" x2="340" y2="140" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="40" y="140" width="190" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="135" y="158" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#26215C">Auth check</text>
+<text x="135" y="176" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3C3489">JWT + Redis blacklist</text>
+
+<rect x="245" y="140" width="190" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="158" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#26215C">Rate limiter</text>
+<text x="340" y="176" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3C3489">Redis-backed limits</text>
+
+<rect x="450" y="140" width="190" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="545" y="158" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#26215C">Role check</text>
+<text x="545" y="176" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3C3489">Admin vs resident</text>
+
+<line x1="135" y1="196" x2="480" y2="220" stroke="#73726c" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.6"/>
+<line x1="340" y1="196" x2="520" y2="220" stroke="#73726c" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.6"/>
+
+<rect x="470" y="220" width="170" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="555" y="238" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#04342C">Redis</text>
+<text x="555" y="256" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#085041">Blacklist &amp; limits</text>
+
+<line x1="200" y1="196" x2="200" y2="300" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="40" y="300" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="110" y="318" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">User</text>
+<text x="110" y="336" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#712B13">Auth &amp; profile</text>
+
+<rect x="193" y="300" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="263" y="318" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">Admin</text>
+<text x="263" y="336" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#712B13">Approve requests</text>
+
+<rect x="346" y="300" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="416" y="318" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">Resident</text>
+<text x="416" y="336" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#712B13">Appointments</text>
+
+<rect x="499" y="300" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="569" y="318" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">Chatbot</text>
+<text x="569" y="336" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#712B13">LangChain agent</text>
+
+<line x1="200" y1="356" x2="200" y2="390" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="569" y1="356" x2="500" y2="390" stroke="#73726c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="60" y="390" width="280" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="200" y="408" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#042C53">MongoDB</text>
+<text x="200" y="426" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0C447C">Users, vaccines, appointments</text>
+
+<rect x="360" y="390" width="280" height="56" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="500" y="408" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#412402">LangChain agent</text>
+<text x="500" y="426" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#633806">Tools + OpenAI gpt-4o-mini</text>
+
+<line x1="360" y1="418" x2="340" y2="418" stroke="#854F0B" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+<rect x="40" y="480" width="600" height="28" rx="6" fill="none" stroke="#73726c" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.4"/>
+<rect x="52" y="488" width="12" height="12" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="70" y="498" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3D3D3A">Frontend</text>
+<rect x="145" y="488" width="12" height="12" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="163" y="498" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3D3D3A">Security</text>
+<rect x="235" y="488" width="12" height="12" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="253" y="498" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3D3D3A">Cache</text>
+<rect x="315" y="488" width="12" height="12" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="333" y="498" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3D3D3A">Controllers</text>
+<rect x="425" y="488" width="12" height="12" rx="3" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="443" y="498" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3D3D3A">Database</text>
+<rect x="520" y="488" width="12" height="12" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="538" y="498" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3D3D3A">AI agent</text>
+</svg>
